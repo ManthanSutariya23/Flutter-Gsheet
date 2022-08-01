@@ -1,20 +1,19 @@
 import 'package:connect_google_excel/src/config/colors.dart';
 import 'package:flutter/material.dart';
 
-class Display extends StatefulWidget {
-  const Display({Key? key}) : super(key: key);
+class Delete extends StatefulWidget {
+  const Delete({Key? key}) : super(key: key);
 
   @override
-  State<Display> createState() => _DisplayState();
+  State<Delete> createState() => _DeleteState();
 }
 
-class _DisplayState extends State<Display> {
+class _DeleteState extends State<Delete> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
-      body: Center(child: Text('Display')),
+      body: Center(child: Text('Delete')),
     );
   }
 }
-

@@ -12,7 +12,7 @@ class _InsertState extends State<Insert> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.transparentColor,
+      backgroundColor: AppColors.whiteColor,
       body: Center(child: Text('Insert')),
     );
   }

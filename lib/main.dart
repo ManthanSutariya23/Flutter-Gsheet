@@ -1,4 +1,6 @@
 import 'package:connect_google_excel/src/config/colors.dart';
+import 'package:connect_google_excel/src/constant/credential.dart';
+import 'package:connect_google_excel/src/home/delete.dart';
 import 'package:connect_google_excel/src/home/display.dart';
 import 'package:connect_google_excel/src/home/insert.dart';
 import 'package:connect_google_excel/src/home/update.dart';
@@ -6,6 +8,7 @@ import 'package:connect_google_excel/src/widget/bottombar_design/sliding_clipped
 import 'package:flutter/material.dart';
 
 void main() {
+  FlutterSheet.init();
   runApp(const MyApp());
 }
 
@@ -15,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -47,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
 @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.transparentColor,
+      backgroundColor: AppColors.whiteColor,
         body: PageView(
           controller: _pageController,
           physics: NeverScrollableScrollPhysics(),
@@ -58,6 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const Display(),
             const Insert(),
             const Update(),
+            const Delete()
           ],
         ),
 
@@ -79,6 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
             BarItem(
               icon: Icons.insert_drive_file_outlined,
               title: 'Insert',
+              iconSize: 25,
+            ),
+            BarItem(
+              icon: Icons.update_outlined,
+              title: 'Update',
               iconSize: 25,
             ),
             BarItem(
