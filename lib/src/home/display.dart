@@ -1,5 +1,8 @@
 import 'package:connect_google_excel/src/config/colors.dart';
+import 'package:connect_google_excel/src/constant/credential.dart';
+import 'package:connect_google_excel/src/widget/comman_widget/button_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Display extends StatefulWidget {
   const Display({Key? key}) : super(key: key);
@@ -13,7 +16,21 @@ class _DisplayState extends State<Display> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
-      body: Center(child: Text('Display')),
+      body: Container(
+        width: Get.size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          
+          children: [
+            buttonView(
+              title: "Click",
+              onPressed: () {
+                FlutterSheet.display();
+              }
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

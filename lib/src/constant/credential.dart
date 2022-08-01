@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:connect_google_excel/src/constant/sheetscolumn.dart';
+import 'package:connect_google_excel/src/home/display.dart';
 import 'package:flutter/material.dart';
 import 'package:gsheets/gsheets.dart';
 
@@ -53,6 +54,12 @@ class FlutterSheet {
   static Future insert(List<Map<String, dynamic>> rowList) async {
     print("--- $rowList");
     _userSheet?.values.map.appendRows(rowList);
+  }
+
+  static display() async {
+    // print("All Data -- ${_userSheet?.values.map.allColumns(mapTo: 3,fromColumn: 1,fromRow: 1)}");
+    final ss = await gsheets.spreadsheet(_spredSheetId);
+    _userSheet?.values.allRows().then((value) => print(value));
   }
 
 }

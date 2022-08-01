@@ -7,6 +7,7 @@ import 'package:connect_google_excel/src/widget/comman_widget/button_view.dart';
 import 'package:connect_google_excel/src/widget/comman_widget/textview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:motion_toast/motion_toast.dart';
 
 class Insert extends StatefulWidget {
   const Insert({Key? key}) : super(key: key);
@@ -99,7 +100,24 @@ class _InsertState extends State<Insert> {
                           SheetsColumns.name : _controller.nameController.value.text.trim(),
                         };
 
-                        await FlutterSheet.insert([feedback]);
+                        if(_controller.countryController.value.text.isNotEmpty && _controller.nameController.value.text.isNotEmpty && _controller.feedbackController.value.text.isNotEmpty) {
+                          print("enter");
+                          await FlutterSheet.insert([feedback]);
+                        }
+                        else {
+                          if(_controller.countryController.value.text.isEmpty)
+                          {
+                            errorDialog(title: 'Country');
+                          }
+                          else if(_controller.nameController.value.text.isEmpty)
+                          {
+                            errorDialog(title: 'Name');
+                          }
+                          else if(_controller.feedbackController.value.text.isEmpty)
+                          {
+                            errorDialog(title: 'Feedback');
+                          }
+                        }
 
                         setState(() {
                           loader = true;
@@ -124,5 +142,20 @@ class _InsertState extends State<Insert> {
         ),
       ),
     );
+  }
+
+  errorDialog({required String title}) {
+    MotionToast.error(
+      title: const Text(
+        'Error',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      description: Text('Please Enter $title'),
+      animationCurve: Curves.bounceOut,
+      borderRadius: 10,
+      animationDuration: const Duration(milliseconds: 1000),
+    ).show(context);
   }
 }
