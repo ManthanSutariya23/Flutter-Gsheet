@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:connect_google_excel/src/API/api_variable.dart';
 import 'package:connect_google_excel/src/constant/sheetscolumn.dart';
 import 'package:connect_google_excel/src/home/display.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,8 @@ class FlutterSheet {
   static display() async {
     // print("All Data -- ${_userSheet?.values.map.allColumns(mapTo: 3,fromColumn: 1,fromRow: 1)}");
     final ss = await gsheets.spreadsheet(_spredSheetId);
-    _userSheet?.values.allRows().then((value) => print(value));
+    _userSheet?.values.allRows().then((value) => APIvariable.allData = value);
+    print("all data -- ${APIvariable.allData}");
   }
 
 }
