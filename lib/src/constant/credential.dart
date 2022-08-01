@@ -6,7 +6,7 @@ import 'package:gsheets/gsheets.dart';
 
 
 class FlutterSheet {
-  static const _credential = """
+  static const _credential = r"""
   {
     "type": "service_account",
     "project_id": "trusty-magnet-358009",
@@ -35,7 +35,7 @@ class FlutterSheet {
       final firstRow = SheetsColumns.getColumns();
       _userSheet?.values.insertRow(1, firstRow);
     } catch (e) {
-      log(e.toString());
+      print("error -- " + e.toString());
     }
   }
 
@@ -51,6 +51,7 @@ class FlutterSheet {
   }
 
   static Future insert(List<Map<String, dynamic>> rowList) async {
+    print("--- $rowList");
     _userSheet?.values.map.appendRows(rowList);
   }
 

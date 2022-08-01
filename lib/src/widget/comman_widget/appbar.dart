@@ -9,7 +9,7 @@ PreferredSizeWidget appBar({
   Function()? onTap,
 }) {
   return AppBar(
-    backgroundColor: AppColors.whiteColor,
+    backgroundColor: AppColors.appGreenColor,
     elevation: 0,
     leading: isLeading! ? GestureDetector(
       onTap: onTap ?? () {
@@ -18,13 +18,13 @@ PreferredSizeWidget appBar({
       child: Icon(
         Icons.arrow_back,
         size: 28,
-        color: AppColors.appGreenColor,
+        color: AppColors.whiteColor,
       ),
     )
     : null,
     title: Text(
       title!,
-      style: AppTextStyle.regular14.copyWith(fontWeight: FontWeight.bold,color: AppColors.appGreenColor),
+      style: AppTextStyle.regular14.copyWith(fontWeight: FontWeight.bold,color: AppColors.whiteColor),
     ),
   );
 }
