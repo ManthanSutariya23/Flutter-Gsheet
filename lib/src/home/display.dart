@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:connect_google_excel/src/API/api_variable.dart';
 import 'package:connect_google_excel/src/config/colors.dart';
 import 'package:connect_google_excel/src/constant/credential.dart';
@@ -15,20 +17,33 @@ class Display extends StatefulWidget {
 
 class _DisplayState extends State<Display> {
 
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     fetchData();
-
   }
 
   bool loader = true;
 
   fetchData() async {
     await FlutterSheet.display();
-    setState(() {
-      loader = false;
+    if(APIvariable.allData == null) {
+      setState(() {
+        loader = true;
+      });
+    }
+    Timer t;
+    t = Timer.periodic(Duration(seconds: 1),  (timer) {
+      setState(() {
+        if(APIvariable.allData != null) {
+          setState(() {
+            loader = false;
+          });
+          timer.cancel();
+        }
+      });
     });
   }
 
@@ -69,9 +84,7 @@ class _DisplayState extends State<Display> {
         : Container(
         width: Get.size.width,
         padding: EdgeInsets.symmetric(horizontal: 10),
-        child: APIvariable.allData.length == 0
-        ? record()
-        : ListView.builder(
+        child: ListView.builder(
           itemCount: APIvariable.allData.length,
           itemBuilder: (BuildContext context, int index) {
             if(index != 0) {

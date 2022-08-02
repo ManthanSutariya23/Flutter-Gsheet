@@ -58,7 +58,7 @@ class FlutterSheet {
     _userSheet?.values.map.appendRows(rowList);
   }
 
-  static display() async {
+  static Future display() async {
     _userSheet?.values.allRows().then((value) => APIvariable.allData = value);
     // print("all data -- ${APIvariable.allData}");
   }

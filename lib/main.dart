@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   FlutterSheet.init();
+  FlutterSheet.display();
   runApp(const MyApp());
 }
 

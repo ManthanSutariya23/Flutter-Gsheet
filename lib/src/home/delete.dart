@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:connect_google_excel/src/API/api_variable.dart';
 import 'package:connect_google_excel/src/config/colors.dart';
@@ -16,6 +18,35 @@ class Delete extends StatefulWidget {
 
 class _DeleteState extends State<Delete> {
   bool loader = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if(APIvariable.allData == null) {
+      fetchData();
+    }
+  }
+
+  fetchData() async {
+    await FlutterSheet.display();
+    if(APIvariable.allData == null) {
+      setState(() {
+        loader = true;
+      });
+    }
+    Timer t;
+    t = Timer.periodic(Duration(seconds: 1),  (timer) {
+      setState(() {
+        if(APIvariable.allData != null) {
+          setState(() {
+            loader = false;
+          });
+          timer.cancel();
+        }
+      });
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
