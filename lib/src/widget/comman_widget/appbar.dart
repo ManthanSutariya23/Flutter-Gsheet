@@ -39,7 +39,7 @@ PreferredSizeWidget appBarHome({
   bool isAction = false
 }) {
   return AppBar(
-    backgroundColor: AppColors.whiteColor,
+    backgroundColor: AppColors.appGreenColor,
     actions: isAction ? action! : null,
     elevation: 0,
     shape: const RoundedRectangleBorder(
@@ -47,20 +47,11 @@ PreferredSizeWidget appBarHome({
         top: Radius.circular(40),
       ),
     ),
-    leading: GestureDetector(
-      onTap: onTap,
-      child: Icon(
-        changeIcon! ? Icons.menu : Icons.close, 
-        size: 28,
-        color: AppColors.appGreenColor,
-      ),
-    ),
-    centerTitle: true,
     title: InkWell(
       onTap: () {},
       child: Text(
         title!,
-        style: AppTextStyle.regular18.copyWith(fontWeight: FontWeight.bold,color: AppColors.appGreenColor),
+        style: AppTextStyle.regular14.copyWith(fontWeight: FontWeight.bold,color: AppColors.whiteColor),
       ),
     ),
   );

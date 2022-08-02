@@ -36,6 +36,7 @@ class FlutterSheet {
       _userSheet = await _getWorksheet(spreadsheet: ss, title: "Sheet1");
       final firstRow = SheetsColumns.getColumns();
       _userSheet?.values.insertRow(1, firstRow);
+      _userSheet?.values.allRows().then((value) => APIvariable.allData = value);
     } catch (e) {
       print("error -- " + e.toString());
     }
@@ -58,10 +59,14 @@ class FlutterSheet {
   }
 
   static display() async {
-    // print("All Data -- ${_userSheet?.values.map.allColumns(mapTo: 3,fromColumn: 1,fromRow: 1)}");
-    final ss = await gsheets.spreadsheet(_spredSheetId);
     _userSheet?.values.allRows().then((value) => APIvariable.allData = value);
-    print("all data -- ${APIvariable.allData}");
+    // print("all data -- ${APIvariable.allData}");
+  }
+
+  static update(row, Map<String, dynamic> rowList) async {
+    print("--- $rowList");
+    _userSheet?.values.map.insertRow(row, rowList);
+    await display();
   }
 
 }

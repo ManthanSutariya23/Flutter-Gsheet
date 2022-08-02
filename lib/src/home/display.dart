@@ -34,7 +34,32 @@ class _DisplayState extends State<Display> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(context: context, title: 'All record'),
+      appBar: appBarHome(
+        context: context, 
+        title: "All Data",
+        isAction: true,
+        changeIcon: true,
+        action: [
+            InkWell(
+              child: const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Icon(Icons.refresh,color: AppColors.whiteColor,),
+              ),
+              onTap: () async {
+                setState(() {
+                  loader = true;
+                });
+
+                await FlutterSheet.display();
+
+                setState(() {
+                  loader = false;
+                });
+              }
+            ),
+            SizedBox(width: 20),
+          ]
+          ),
       backgroundColor: AppColors.whiteColor,
       body: loader
         ? Center(
