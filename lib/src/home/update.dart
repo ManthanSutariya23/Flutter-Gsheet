@@ -5,6 +5,7 @@ import 'package:connect_google_excel/src/constant/sheetscolumn.dart';
 import 'package:connect_google_excel/src/controller/insert_controller.dart';
 import 'package:connect_google_excel/src/widget/comman_widget/appbar.dart';
 import 'package:connect_google_excel/src/widget/comman_widget/button_view.dart';
+import 'package:connect_google_excel/src/widget/comman_widget/record.dart';
 import 'package:connect_google_excel/src/widget/comman_widget/textview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,7 +59,9 @@ class _UpdateState extends State<Update> {
         : Container(
         width: Get.size.width,
         padding: EdgeInsets.symmetric(horizontal: 10),
-        child: ListView.builder(
+        child: APIvariable.allData.length == 0
+        ? record()
+        : ListView.builder(
           itemCount: APIvariable.allData.length,
           itemBuilder: (BuildContext context, int index) {
             if(index != 0) {

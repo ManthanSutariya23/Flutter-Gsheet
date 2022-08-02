@@ -3,6 +3,7 @@ import 'package:connect_google_excel/src/API/api_variable.dart';
 import 'package:connect_google_excel/src/config/colors.dart';
 import 'package:connect_google_excel/src/constant/credential.dart';
 import 'package:connect_google_excel/src/widget/comman_widget/appbar.dart';
+import 'package:connect_google_excel/src/widget/comman_widget/record.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -52,23 +53,27 @@ class _DeleteState extends State<Delete> {
         : Container(
         width: Get.size.width,
         padding: EdgeInsets.symmetric(horizontal: 10),
-        child: ListView.builder(
+        child: 
+        APIvariable.allData.length == 0
+        ? record()
+        : ListView.builder(
           itemCount: APIvariable.allData.length,
           itemBuilder: (BuildContext context, int index) {
             if(index != 0) {
               return InkWell(
                 onTap: () async {
                   
-                  cancleDialog(context, () async => await FlutterSheet.delete(index+1));
+                  cancleDialog(context, () async {
+                    await FlutterSheet.delete(index+1);
+                    setState(() {
+                      loader = true;
+                    });
 
-                  setState(() {
-                    loader = true;
-                  });
+                    await FlutterSheet.display();
 
-                  await FlutterSheet.display();
-
-                  setState(() {
-                    loader = false;
+                    setState(() {
+                      loader = false;
+                    });
                   });
                 },
                 child: Column(
