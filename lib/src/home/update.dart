@@ -19,7 +19,7 @@ class Update extends StatefulWidget {
 
 class _UpdateState extends State<Update> {
   
-  bool loader = false;
+  bool loader = false;  
 
   @override
   Widget build(BuildContext context) {

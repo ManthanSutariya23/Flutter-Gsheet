@@ -69,4 +69,8 @@ class FlutterSheet {
     await display();
   }
 
+  static delete(id){
+    _userSheet?.deleteRow(id);
+  }
+
 }
